@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить пользователя</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Добавить нового пользователя</h1>
+        
+        <form  class="forms" action="/add-user" method="POST">
+            <div class="form-group">
+                <label for="first_name">Имя:</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="last_name">Фамилия:</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            
+            <div class="form-group">
+                <label for="id_socialStatus">Социальный статус:</label>
+                <select id="id_socialStatus" name="id_socialStatus" required>
+                    <option value="">Выберите статус</option>
+                    <% socialStatuses.forEach(status => { %>
+                        <option value="<%= status.id_socialStatus %>">
+                            <%= status.name %> (<%= status.discount %>% скидка)
+                        </option>
+                    <% }); %>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="id_tarif">Тариф:</label>
+                <select id="id_tarif" name="id_tarif" required>
+                    <option value="">Выберите тариф</option>
+                    <% tarifs.forEach(tarif => { %>
+                        <option value="<%= tarif.id_tarif %>">
+                            <%= tarif.name %> - <%= tarif.price %> руб. (<%= tarif.minutes %> мин, <%= tarif.gb %> ГБ)
+                        </option>
+                    <% }); %>
+                </select>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Добавить</button>
+                <a href="/" class="btn btn-cancel">Отмена</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
